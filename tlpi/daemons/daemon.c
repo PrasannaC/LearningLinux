@@ -1,6 +1,8 @@
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <stdlib.h>
 #include "daemon.h"
+#include <unistd.h> 
 
 int becomeDaemon(int flags)    /* returns 0 on success, -1 on error */
 {
@@ -17,7 +19,7 @@ int becomeDaemon(int flags)    /* returns 0 on success, -1 on error */
 
 	switch (fork()){					/* Ensure we are not session leader */
 		case -1: return -1;
-			 case 0; break;
+		case 0:  break;
 		default: _exit(EXIT_SUCCESS);
 	}
 	
